@@ -1,0 +1,124 @@
+$size: 400px;
+
+:root {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+#game-board {
+  background-color: #ccc;
+  width: 100vmin;
+  height: 100vmin;
+  display: grid;
+  grid-template-rows: repeat(21, 1fr);
+  grid-template-columns: repeat(21, 1fr);
+}
+
+.panel {
+  h1 {
+    font-size: 5rem;
+  }
+
+  .score {
+    font-size: 4rem;
+    font-weight: 500;
+  }
+
+  .btn {
+    width: 150px;
+    height: 50px;
+    font-size: 2rem;
+  }
+}
+
+.game {
+  display: flex;
+  gap: 5rem;
+
+  .board {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 1px;
+    //background: #333;
+  }
+
+  .grid {
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 1px;
+    top: 0;
+    left: 0;
+    background: #333;
+    z-index: 0;
+  }
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  background: #eee;
+  //position: absolute;
+  //outline: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 0;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.snake {
+  background-color: hsl(200, 100%, 50%);
+  z-index: 1;
+}
+
+.food {
+  background: red;
+  z-index: 1;
+}
+
+button[class^="btn"] {
+  background-color: #ffa000;
+  padding: 5px 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  letter-spacing: 0.3em;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  box-shadow: 0 0 10px 5px rgba(black, 0.2);
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s, background 0.3s;
+  text-align: center;
+
+  &:hover {
+    background: lighten(#ffa000, 10%);
+    box-shadow: 0 0 20px 5px rgba(black, 0.3);
+  }
+}
