@@ -29,7 +29,6 @@ export const useAnimationFrame = ({
     frameId.current = requestAnimationFrame(animate);
 
     return () => {
-      console.log("useAnimationFrame cancel");
       cancelAnimationFrame(frameId.current);
     };
   }, [nextAnimationFrameHandler, animate]);

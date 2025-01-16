@@ -1,4 +1,5 @@
 import { Segment } from "./segment";
+import { Velocity } from "./velocity";
 
 export class Snake {
   private snake: Segment[];
@@ -16,10 +17,10 @@ export class Snake {
     return [...this.snake];
   }
 
-  move(direction: { xVelocity: number; yVelocity: number }): void {
+  move(direction: Velocity): void {
     const head = {
-      x: this.snake[0].x + direction.xVelocity,
-      y: this.snake[0].y + direction.yVelocity,
+      x: this.snake[0].x + direction.x,
+      y: this.snake[0].y + direction.y,
     };
     this.snake.unshift(head);
     if (!this.isGrowing) {

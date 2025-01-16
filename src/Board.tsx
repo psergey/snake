@@ -16,8 +16,8 @@ const Board: FC = (): React.ReactElement => {
     setSnake((prev) => {
       const current = new SnakeSprite([...prev.segments]);
       current.move({
-        xVelocity: velocity.x,
-        yVelocity: velocity.y,
+        x: velocity.x,
+        y: velocity.y,
       });
 
       return current;

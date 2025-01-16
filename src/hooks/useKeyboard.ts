@@ -16,7 +16,6 @@ export const useKeyboard = (
     const targetNode = node ?? document;
     targetNode?.addEventListener("keydown", keydownHandler);
     return () => {
-      console.log("useKeyboard: UNSUBSCRIBE");
       targetNode?.removeEventListener("keydown", keydownHandler);
     };
   }, [keydownHandler, node]);
