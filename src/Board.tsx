@@ -1,27 +1,76 @@
-import { FC } from "react";
+import { FC, useCallback, useState } from "react";
 
 import Snake from "./Snake";
-import { Item } from "./Item.type";
 import styles from "./Board.module.scss";
 import Grid from "./Grid";
+import { Snake as SnakeSprite } from "./models/snake";
+import { useAnimationFrame } from "./hooks/useAnimationFrame";
+import { BOARD_SIZE, SNAKE_SPEED } from "./models/constants";
+import { useKeyboard } from "./hooks/useKeyboard";
 
 const Board: FC = (): React.ReactElement => {
-  const snake: Item[] = [
-    {
-      x: 1,
-      y: 1,
-    },
-    {
-      x: 2,
-      y: 1,
-    },
-  ];
+  const [snake, setSnake] = useState(() => SnakeSprite.Create(BOARD_SIZE));
+  const [velocity, setVelocity] = useState({ x: 1, y: 0 });
+
+  const animate = useCallback(() => {
+    setSnake((prev) => {
+      const current = new SnakeSprite([...prev.segments]);
+      current.move({
+        xVelocity: velocity.x,
+        yVelocity: velocity.y,
+      });
+
+      return current;
+    });
+  }, [velocity]);
+
+  const keypressHandler = (event: KeyboardEvent) => {
+    const keyPressed = event.code;
+
+    const movingUp = velocity.y == -1;
+    const movingDown = velocity.y == 1;
+    const movingLeft = velocity.x == -1;
+    const movingRight = velocity.x == 1;
+
+    switch (true) {
+      case keyPressed == "ArrowUp" && !movingDown:
+        setVelocity({
+          x: 0,
+          y: -1,
+        });
+        break;
+      case keyPressed == "ArrowDown" && !movingUp:
+        setVelocity({
+          x: 0,
+          y: 1,
+        });
+        break;
+      case keyPressed == "ArrowLeft" && !movingRight:
+        setVelocity({
+          x: -1,
+          y: 0,
+        });
+        break;
+      case keyPressed == "ArrowRight" && !movingLeft:
+        setVelocity({
+          x: 1,
+          y: 0,
+        });
+        break;
+    }
+  };
+
+  useKeyboard(keypressHandler);
+  useAnimationFrame({
+    nextAnimationFrameHandler: animate,
+    framePerSeconds: SNAKE_SPEED / 4,
+  });
 
   return (
     <div className={styles.board}>
-      <Grid />
-      {snake.map((item) => (
-        <Snake {...item} />
+      <Grid size={BOARD_SIZE} />
+      {snake.segments.map((item, i) => (
+        <Snake key={i} {...item} />
       ))}
     </div>
   );
