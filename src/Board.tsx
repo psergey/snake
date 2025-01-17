@@ -1,12 +1,12 @@
 import { FC, useCallback, useState } from "react";
 
 import Snake from "./Snake";
-import styles from "./Board.module.scss";
 import Grid from "./Grid";
-import { Snake as SnakeSprite } from "./models/snake";
-import { useAnimationFrame } from "./hooks/useAnimationFrame";
-import { BOARD_SIZE, SNAKE_SPEED } from "./models/constants";
-import { useKeyboard } from "./hooks/useKeyboard";
+import { Snake as SnakeSprite } from "@models/snake";
+import { BOARD_SIZE, SNAKE_SPEED } from "@models/constants";
+import { useAnimationFrame } from "@hooks/useAnimationFrame";
+import { useKeyboard } from "@hooks/useKeyboard";
+import styles from "./Board.module.scss";
 
 const Board: FC = (): React.ReactElement => {
   const [snake, setSnake] = useState(() => SnakeSprite.Create(BOARD_SIZE));

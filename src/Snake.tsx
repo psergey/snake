@@ -1,6 +1,7 @@
 import { FC } from "react";
+
+import { Segment } from "@models/segment";
 import styles from "./Snake.module.scss";
-import { Segment } from "./models/segment";
 
 const Snake: FC<Segment> = (item): React.ReactElement => {
   return (
