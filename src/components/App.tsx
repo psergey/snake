@@ -1,9 +1,7 @@
 import Game from "./Game";
-import "./App.css";
+import "./App.module.scss";
 
 function App() {
-  //const [count, setCount] = useState(0);
-
   return (
     <>
       <Game />

@@ -10,8 +10,9 @@
     /* Aliases */
     "baseUrl": "./src",
     "paths": {
-      "@models/*": ["models/*"],
-      "@hooks/*": ["hooks/*"]
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@models/*": ["models/*"]
     },
 
     /* Bundler mode */

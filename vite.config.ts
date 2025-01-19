@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 
 const baseUrl = "./src/";
 const alias = [
+  ["@components", "./components"],
   ["@hooks", "./hooks"],
   ["@models", "./models"],
 ].map(([name, path]) => ({

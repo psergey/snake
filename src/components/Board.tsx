@@ -1,11 +1,11 @@
 import { FC, useCallback, useState } from "react";
 
-import Snake from "./Snake";
-import Grid from "./Grid";
 import { Snake as SnakeSprite } from "@models/snake";
 import { BOARD_SIZE, SNAKE_SPEED } from "@models/constants";
 import { useAnimationFrame } from "@hooks/useAnimationFrame";
 import { useKeyboard } from "@hooks/useKeyboard";
+import Grid from "./Grid";
+import Snake from "./Snake";
 import styles from "./Board.module.scss";
 
 const Board: FC = (): React.ReactElement => {
@@ -27,31 +27,31 @@ const Board: FC = (): React.ReactElement => {
   const keypressHandler = (event: KeyboardEvent) => {
     const keyPressed = event.code;
 
-    const movingUp = velocity.y == -1;
-    const movingDown = velocity.y == 1;
-    const movingLeft = velocity.x == -1;
-    const movingRight = velocity.x == 1;
+    const movingUp = velocity.y === -1;
+    const movingDown = velocity.y === 1;
+    const movingLeft = velocity.x === -1;
+    const movingRight = velocity.x === 1;
 
     switch (true) {
-      case keyPressed == "ArrowUp" && !movingDown:
+      case keyPressed === "ArrowUp" && !movingDown:
         setVelocity({
           x: 0,
           y: -1,
         });
         break;
-      case keyPressed == "ArrowDown" && !movingUp:
+      case keyPressed === "ArrowDown" && !movingUp:
         setVelocity({
           x: 0,
           y: 1,
         });
         break;
-      case keyPressed == "ArrowLeft" && !movingRight:
+      case keyPressed === "ArrowLeft" && !movingRight:
         setVelocity({
           x: -1,
           y: 0,
         });
         break;
-      case keyPressed == "ArrowRight" && !movingLeft:
+      case keyPressed === "ArrowRight" && !movingLeft:
         setVelocity({
           x: 1,
           y: 0,
