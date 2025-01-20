@@ -7,6 +7,16 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    /* Aliases */
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["src/*"],
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@models/*": ["models/*"]
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

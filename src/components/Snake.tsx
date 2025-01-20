@@ -1,8 +1,9 @@
 import { FC } from "react";
-import styles from "./Snake.module.scss";
-import { Item } from "./Item.type";
 
-const Snake: FC<Item> = (item): React.ReactElement => {
+import { Segment } from "@models/segment";
+import styles from "./Snake.module.scss";
+
+const Snake: FC<Segment> = (item): React.ReactElement => {
   return (
     <div
       className={styles.snake}
