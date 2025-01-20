@@ -37,7 +37,7 @@ export class Snake {
   isHitSelf(): boolean {
     const { x, y } = this.head;
     for (let i = 1; i < this.snake.length; i++)
-      if (this.snake[i].x == x && this.snake[i].y == y) return true;
+      if (this.snake[i].x === x && this.snake[i].y === y) return true;
 
     return false;
   }
