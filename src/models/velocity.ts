@@ -1,4 +1,4 @@
-export interface Item {
+export interface Velocity {
   x: number;
   y: number;
 }
