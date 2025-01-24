@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import { Coordinate } from "@/models/coordinate";
-import styles from "./Snake.module.scss";
+import styles from "./Food.module.scss";
 
-const Snake: FC<Coordinate> = (item): React.ReactElement => {
+const Food: FC<Coordinate> = (item): React.ReactElement => {
   return (
     <div
-      className={styles.snake}
+      className={styles.food}
       style={{
         gridRowStart: item.y,
         gridColumnStart: item.x,
@@ -15,4 +15,4 @@ const Snake: FC<Coordinate> = (item): React.ReactElement => {
   );
 };
 
-export default Snake;
+export default Food;

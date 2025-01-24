@@ -1,3 +1,7 @@
+@use "sass:color";
+
+$btn-color: #ffa000;
+
 :root {
   font-family: Inter, sans-serif;
   line-height: 1.5;
@@ -7,10 +11,19 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  box-sizing: border-box;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 @font-face {
@@ -39,4 +52,29 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+button[class^="btn"] {
+  background-color: $btn-color;
+  padding: 5px 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  letter-spacing: 0.3em;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  box-shadow: 0 0 10px 5px rgba(black, 0.2);
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s, background 0.3s;
+  text-align: center;
+
+  &:hover {
+    background: color.scale($btn-color, $lightness: 10%);
+    box-shadow: 0 0 20px 5px rgba(black, 0.3);
+  }
 }
