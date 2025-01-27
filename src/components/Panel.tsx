@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { useGameContext } from "@/hooks/useGameContext";
+import { useGameContext } from "@contexts/useGameContext";
 import styles from "./Panel.module.scss";
 
 const Panel: FC = (): React.ReactElement => {

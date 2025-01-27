@@ -7,11 +7,11 @@ import {
   FOOD_TICK_INTERVAL,
   SNAKE_SPEED,
 } from "@models/constants";
-import { GameContext } from "@hooks/useGameContext";
 import useLocalStorage from "@hooks/useLocalStorage";
+import { Coordinate } from "@models/coordinate";
 import { Snake } from "@models/snake";
 import { Velocity } from "@models/velocity";
-import { Coordinate } from "@models/coordinate";
+import { GameContext } from "./useGameContext";
 
 const GameProvider: FC<PropsWithChildren> = ({ children }): ReactElement => {
   const [isPaused, setIsPaused] = useState(false);

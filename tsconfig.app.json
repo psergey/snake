@@ -12,6 +12,7 @@
     "paths": {
       "@/*": ["*"],
       "@assets/*": ["assets/*"],
+      "@contexts/*": ["contexts/*"],
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@models/*": ["models/*"]

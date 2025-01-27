@@ -1,4 +1,4 @@
-import GameProvider from "@/GameProvider";
+import GameProvider from "@contexts/GameProvider";
 import Game from "./Game";
 import "./App.module.scss";
 

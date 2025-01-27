@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-//import { Snake as SnakeSprite } from "@models/snake";
 import { BOARD_SIZE, BORDER_UNIT_SIZE } from "@models/constants";
 import { useAnimationFrame } from "@hooks/useAnimationFrame";
-import { useGameContext } from "@/hooks/useGameContext";
+import { useGameContext } from "@contexts/useGameContext";
 import { useKeyboard } from "@hooks/useKeyboard";
 import Grid from "./Grid";
 import Snake from "./Snake";
