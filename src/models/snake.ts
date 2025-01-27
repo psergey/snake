@@ -1,30 +1,31 @@
-import { Segment } from "./segment";
+import { Coordinate } from "./coordinate";
 import { Velocity } from "./velocity";
 
 export class Snake {
-  private snake: Segment[];
+  private parts: Coordinate[];
   private isGrowing: boolean = false;
 
-  constructor(segments: Segment[]) {
-    this.snake = segments;
+  constructor(segments: Coordinate[]) {
+    this.parts = segments;
   }
 
-  get head(): { x: number; y: number } {
-    return { ...this.segments[0] };
+  get head(): Coordinate {
+    return { ...this.parts[this.parts.length - 1] };
   }
 
-  get segments(): Segment[] {
-    return [...this.snake];
+  get segments(): Coordinate[] {
+    return [...this.parts];
   }
 
   move(direction: Velocity): void {
     const head = {
-      x: this.snake[0].x + direction.x,
-      y: this.snake[0].y + direction.y,
+      x: this.head.x + direction.x,
+      y: this.head.y + direction.y,
     };
-    this.snake.unshift(head);
+
+    this.parts.push(head);
     if (!this.isGrowing) {
-      this.snake.pop();
+      this.parts = this.parts.slice(1);
     }
 
     this.isGrowing = false;
@@ -35,17 +36,29 @@ export class Snake {
   }
 
   isHitSelf(): boolean {
-    const { x, y } = this.head;
-    for (let i = 1; i < this.snake.length; i++)
-      if (this.snake[i].x === x && this.snake[i].y === y) return true;
-
-    return false;
+    return this.isCollidingCoordinates(this.head, this.parts, true);
   }
 
-  isColliding(x: number, y: number): boolean {
-    return this.snake.some((segment) => {
-      return segment.x == x && segment.y == y;
-    });
+  isColliding(coordinate: Coordinate): boolean {
+    return this.isCollidingCoordinates(coordinate, this.parts);
+  }
+
+  copy(): Snake {
+    const snake = new Snake(this.parts);
+    snake.isGrowing = this.isGrowing;
+    return snake;
+  }
+
+  private isCollidingCoordinates(
+    coordinate: Coordinate,
+    segments: Coordinate[],
+    skipHead: boolean = false
+  ): boolean {
+    return segments.some((segment, index) =>
+      skipHead && index == segments.length - 1
+        ? false
+        : segment.x == coordinate.x && segment.y == coordinate.y
+    );
   }
 
   static Create(boardSize: number): Snake {

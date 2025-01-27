@@ -10,8 +10,9 @@
     /* Aliases */
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["*"],
       "@assets/*": ["assets/*"],
+      "@contexts/*": ["contexts/*"],
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@models/*": ["models/*"]
