@@ -1,7 +1,5 @@
+@use "@/scss/mixins" as *;
+
 .board {
-  display: grid;
-  position: relative;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(10, 30px);
-  gap: 1px;
+  @include grid(relative);
 }
