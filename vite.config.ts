@@ -9,6 +9,7 @@ const alias = [
   ["@components", "./components"],
   ["@hooks", "./hooks"],
   ["@models", "./models"],
+  ["@scss", "./scss"],
 ].map(([name, path]) => ({
   find: name,
   replacement: libpath.resolve(__dirname, baseUrl, path),

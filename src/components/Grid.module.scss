@@ -1,9 +1,7 @@
+@use "@/scss/mixins" as *;
+
 .grid {
-  display: grid;
-  position: absolute;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(10, 30px);
-  gap: 1px;
+  @include grid(absolute);
   top: 0;
   left: 0;
   background: #333;
