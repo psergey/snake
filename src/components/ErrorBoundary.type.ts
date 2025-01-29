@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
-export interface Props {
+export interface ErrorBoundaryProps {
   fallback: ReactNode;
 }
 
-export interface State {
+export interface ErrorBoundaryState {
   hasError: boolean;
 }
