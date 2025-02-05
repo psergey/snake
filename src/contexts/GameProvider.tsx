@@ -1,4 +1,11 @@
-import { FC, PropsWithChildren, ReactElement, useRef, useState } from "react";
+import {
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import {
   BOARD_SIZE,
@@ -9,9 +16,10 @@ import {
 } from "@models/constants";
 import useLocalStorage from "@hooks/useLocalStorage";
 import { Coordinate } from "@models/coordinate";
+import { GameContext } from "./useGameContext";
+import { Score, SCORE_TABLE_MAX_SIZE } from "@/models/score";
 import { Snake } from "@models/snake";
 import { Velocity } from "@models/velocity";
-import { GameContext } from "./useGameContext";
 
 const GameProvider: FC<PropsWithChildren> = ({ children }): ReactElement => {
   const [isPaused, setIsPaused] = useState(false);
@@ -23,10 +31,14 @@ const GameProvider: FC<PropsWithChildren> = ({ children }): ReactElement => {
   const [food, setFood] = useState<Coordinate | null>();
   const frameRenderTick = useRef<number>(0);
   const foodLastSpawnTick = useRef<number>(0);
-  const [highScore, setHighScore] = useLocalStorage<number>(
-    "snakeHighScore",
-    0
+  const [topScores, setTopScores] = useLocalStorage<Score[]>(
+    "snakeGameTopScores",
+    []
   );
+
+  useEffect(() => {
+    setTopScores((prev) => [...prev].sort((a, b) => b.score - a.score));
+  }, [setTopScores]);
 
   const start = () => {
     frameRenderTick.current = 0;
@@ -42,7 +54,12 @@ const GameProvider: FC<PropsWithChildren> = ({ children }): ReactElement => {
   const over = () => {
     setIsMoving(false);
     setIsOver(true);
-    if (score > highScore) setHighScore(score);
+
+    const currentScoreTable = [...topScores];
+    currentScoreTable.push({ score: score, date: new Date() });
+    currentScoreTable.sort((a, b) => b.score - a.score);
+
+    setTopScores(currentScoreTable.slice(0, SCORE_TABLE_MAX_SIZE));
   };
 
   const pause = () => {
@@ -118,7 +135,7 @@ const GameProvider: FC<PropsWithChildren> = ({ children }): ReactElement => {
     <GameContext.Provider
       value={{
         score,
-        highScore,
+        highScore: topScores.length > 0 ? topScores[0].score : 0,
         isMoving,
         isPaused,
         isOver,

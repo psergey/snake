@@ -12,7 +12,8 @@ const useLocalStorage = <T>(
   });
 
   useEffect(() => {
-    const data = typeof state === "object" ? JSON.stringify(value) : "" + value;
+    const data =
+      typeof state === "object" ? JSON.stringify(value) : (value as string);
     localStorage.setItem(key, data);
   }, [key, state, value]);
 
